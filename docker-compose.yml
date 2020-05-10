@@ -1,0 +1,15 @@
+version: '3.1'
+services:
+  php:
+    image: thecodingmachine/php:7.4-v3-apache
+    volumes:
+      - .:/var/www/html:cached
+      - ~/.ssh:/home/docker/.ssh
+    ports:
+      - "80:80"
+      - "10022:22"
+    environment:
+      PHP_EXTENSION_XDEBUG: 1
+      PHP_INI_XDEBUG__REMOTE_PORT: 9000
+      PHP_INI_XDEBUG__REMOTE_HOST: 0.0.0.0
+      XDEBUG_CONFIG: "remote_port=9000 remote_autostart=1"
